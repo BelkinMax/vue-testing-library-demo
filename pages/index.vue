@@ -1,7 +1,10 @@
 <template>
   <div class="test-elements--list">
     <div class="test-elements--item">
-      <SimpleCounter />
+      <SimpleCounter
+        :count="count"
+        @action="handleCounterAction"
+      />
     </div>
   </div>
 </template>
@@ -13,6 +16,18 @@ export default {
   name: "IndexPage",
   components: {
     SimpleCounter,
+  },
+  data() {
+    return {
+      count: 0,
+      logs: [],
+    };
+  },
+  methods: {
+    handleCounterAction({ name, count }) {
+      this.count = count;
+      this.logs.push(`${count}: ${name}`);
+    }
   },
 };
 </script>
